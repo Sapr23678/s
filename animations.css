@@ -1,0 +1,365 @@
+/* الرسوم المتحركة المتكاملة */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes talk {
+    0% { transform: translateX(-50%) scale(1); }
+    100% { transform: translateX(-50%) scale(1.02); }
+}
+
+@keyframes walk {
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes glow {
+    0%, 100% { 
+        box-shadow: 0 0 5px #ffd93d, 0 0 10px #ff6b6b;
+    }
+    50% { 
+        box-shadow: 0 0 20px #ffd93d, 0 0 30px #ff6b6b, 0 0 40px #4ecdc4;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes starFloat {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+@keyframes confetti {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes magicSparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(1) rotate(360deg); opacity: 0; }
+}
+
+/* تطبيقات الرسوم المتحركة */
+.character.entering {
+    animation: walk 1s ease-out;
+}
+
+.character.excited {
+    animation: jump 0.5s ease-in-out 2;
+}
+
+.character.talking {
+    animation: talk 0.5s ease-in-out infinite alternate;
+}
+
+.character.shaking {
+    animation: shake 0.5s ease-in-out;
+}
+
+.character.dancing {
+    animation: dance 1s ease-in-out infinite;
+}
+
+@keyframes dance {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.pulse-fast {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.spin-slow {
+    animation: spin 3s linear infinite;
+}
+
+.spin-fast {
+    animation: spin 1s linear infinite;
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+.float-slow {
+    animation: float 4s ease-in-out infinite;
+}
+
+.float-fast {
+    animation: float 2s ease-in-out infinite;
+}
+
+/* تأثيرات الانتقال بين المشاهد */
+.scene-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: sceneChange 1.5s ease-in-out;
+}
+
+.scene-transition-content {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+@keyframes sceneChange {
+    0% { opacity: 0; transform: scale(1.2); }
+    20% { opacity: 1; transform: scale(1); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* تأثيرات النجاح */
+.success-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    z-index: 100;
+    animation: celebrate 2s ease-out;
+}
+
+@keyframes celebrate {
+    0% { 
+        transform: translate(-50%, -50%) scale(0) rotate(0deg); 
+        opacity: 0; 
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2) rotate(180deg); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1) rotate(360deg); 
+        opacity: 1; 
+    }
+}
+
+.star-particle {
+    position: absolute;
+    font-size: 1.5rem;
+    z-index: 99;
+    animation: starFloat 2s ease-out forwards;
+}
+
+.confetti {
+    position: absolute;
+    font-size: 1.2rem;
+    z-index: 98;
+    animation: confetti 3s ease-in forwards;
+}
+
+.magic-sparkle-effect {
+    position: absolute;
+    font-size: 1rem;
+    color: #ffd93d;
+    animation: magicSparkle 1s ease-out forwards;
+}
+
+/* تأثيرات النص */
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid #ff6b6b;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40, end), blink 0.8s infinite;
+}
+
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    animation: typewriter 2s steps(30, end);
+}
+
+/* تأثيرات التفاعل */
+.hover-grow {
+    transition: transform 0.3s ease;
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.click-press:active {
+    transform: scale(0.95);
+}
+
+/* تأثيرات الخلفية */
+.background-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* تأثيرات الأحرف والتعلم */
+.letter-reveal {
+    animation: letterReveal 0.5s ease-out;
+}
+
+@keyframes letterReveal {
+    0% { 
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.word-highlight {
+    background: linear-gradient(120deg, #ffd93d, #ff6b6b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: wordGlow 2s ease-in-out infinite;
+}
+
+@keyframes wordGlow {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 217, 61, 0.5)); }
+    50% { filter: drop-shadow(0 0 20px rgba(255, 217, 61, 0.8)); }
+}
+
+/* تأثيرات التحفيز */
+.encouragement-pop {
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.progress-grow {
+    animation: progressFill 1s ease-out forwards;
+}
+
+@keyframes progressFill {
+    from { width: 0%; }
+    to { width: var(--progress-width); }
+}
+
+/* تأثيرات الاستجابة للصوت */
+.voice-listening {
+    animation: voicePulse 1s ease-in-out infinite;
+}
+
+@keyframes voicePulse {
+    0%, 100% { 
+        box-shadow: 0 0 10px #4ecdc4;
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 20px #4ecdc4, 0 0 30px #4ecdc4;
+        transform: scale(1.05);
+    }
+}
+
+.voice-detected {
+    animation: voiceDetected 0.5s ease-out;
+}
+
+@keyframes voiceDetected {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

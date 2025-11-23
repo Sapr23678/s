@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مغامرات سارة وغيث - المسلسل التعليمي التفاعلي</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/learning.css">
+</head>
+<body class="cartoon-mode">
+    <!-- شاشة البداية -->
+    <div id="introScreen" class="screen active">
+        <div class="intro-background">
+            <div class="title-card">
+                <h1 class="series-title">مغامرات سارة وغيث</h1>
+                <h2 class="episode-title">المسلسل التعليمي التفاعلي</h2>
+                
+                <div class="character-intro">
+                    <div class="character" data-character="sara">
+                        <div class="kid-avatar">
+                            <img src="assets/images/characters/sara/excited.png" alt="سارة" class="kid-photo">
+                            <span class="avatar-fallback">👧</span>
+                        </div>
+                        <span>سارة</span>
+                        <div class="voice-sample" id="saraVoiceSample">🎤</div>
+                    </div>
+                    <div class="character" data-character="ghaith">
+                        <div class="kid-avatar">
+                            <img src="assets/images/characters/ghaith/excited.png" alt="غيث" class="kid-photo">
+                            <span class="avatar-fallback">👦</span>
+                        </div>
+                        <span>غيث</span>
+                        <div class="voice-sample" id="ghaithVoiceSample">🎤</div>
+                    </div>
+                </div>
+
+                <!-- نظام التعرف على الصوت -->
+                <div class="voice-identification">
+                    <h3>التعرف على الصوت</h3>
+                    <button class="btn voice-id-btn" id="startVoiceIdBtn">
+                        🎤 تحدث لأعرف من أنت
+                    </button>
+                    <div class="voice-status" id="voiceStatus">
+                        اضغط على الزر وتحدث
+                    </div>
+                    <div class="training-section">
+                        <h4>تدريب النظام على أصواتكم</h4>
+                        <button class="btn train-btn" id="trainSaraBtn">تدريب صوت سارة</button>
+                        <button class="btn train-btn" id="trainGhaithBtn">تدريب صوت غيث</button>
+                    </div>
+                    <div class="identified-child" id="identifiedChildDisplay"></div>
+                </div>
+                
+                <button class="btn start-episode-btn" id="startEpisodeBtn" disabled>
+                    🎬 ابدأ المغامرة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- المشهد الرئيسي -->
+    <div id="mainScene" class="scene">
+        <div class="background classroom-bg">
+            <!-- الشخصيات -->
+            <div class="character-container">
+                <div class="character teacher" id="teacherCharacter">
+                    <img src="assets/images/characters/teacher/normal.png" alt="المعلمة">
+                    <div class="dialogue-bubble" id="teacherDialogue">
+                        مرحباً! أنا المعلمة سلمى. سأساعدكم في رحلة التعلم الممتعة!
+                    </div>
+                </div>
+                
+                <div class="character sara-character" id="saraCharacter">
+                    <img src="assets/images/characters/sara/normal.png" alt="سارة">
+                    <div class="dialogue-bubble" id="saraDialogue"></div>
+                </div>
+                
+                <div class="character ghaith-character" id="ghaithCharacter">
+                    <img src="assets/images/characters/ghaith/normal.png" alt="غيث">
+                    <div class="dialogue-bubble" id="ghaithDialogue"></div>
+                </div>
+            </div>
+
+            <!-- العناصر التفاعلية -->
+            <div class="interactive-elements">
+                <div class="magic-book glowing" id="magicBook" data-section="learning">
+                    📖 الكتاب السحري
+                </div>
+                <div class="learning-map glowing" id="learningMap" data-section="episodes">
+                    🗺️ خريطة المغامرة
+                </div>
+                <div class="quran-book glowing" id="quranBook" data-section="quran">
+                    📖 المصحف الشريف
+                </div>
+            </div>
+
+            <!-- شاشات التعلم -->
+            <div class="learning-screens">
+                <!-- شاشة الأقسام التعليمية -->
+                <div class="sections-screen learning-screen" id="sectionsLearningScreen">
+                    <div class="learning-header">
+                        <h2>🏰 عالم المعرفة</h2>
+                        <p>اختر ما تريد تعلمه اليوم!</p>
+                    </div>
+                    
+                    <div class="sections-grid">
+                        <div class="section-card magical-card" data-section="arabic">
+                            <div class="section-icon">🔤</div>
+                            <h3 class="section-title">الحروف العربية</h3>
+                            <p class="section-desc">رحلة في عالم الحروف السحرية</p>
+                            <div class="magic-sparkle">✨</div>
+                        </div>
+                        
+                        <div class="section-card magical-card" data-section="english">
+                            <div class="section-icon">🔠</div>
+                            <h3 class="section-title">الحروف الإنجليزية</h3>
+                            <p class="section-desc">مغامرة مع حروف جديدة</p>
+                            <div class="magic-sparkle">✨</div>
+                        </div>
+                        
+                        <div class="section-card magical-card" data-section="quran">
+                            <div class="section-icon">📖</div>
+                            <h3 class="section-title">القرآن الكريم</h3>
+                            <p class="section-desc">استمع إلى أجمل التلاوات</p>
+                            <div class="magic-sparkle">✨</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn back-btn magical-btn" id="backToSceneBtn">العودة للمشهد</button>
+                </div>
+
+                <!-- قسم الحروف العربية -->
+                <div class="content-screen learning-screen" id="arabicLearningScreen">
+                    <div class="learning-header">
+                        <h2>🔤 الحروف العربية</h2>
+                        <p>اختر حرفاً لتبدأ المغامرة!</p>
+                    </div>
+                    
+                    <div class="letters-grid" id="arabicLettersGrid"></div>
+                    
+                    <div class="letter-display-section">
+                        <div class="letter-display magical-letter" id="arabicLetterDisplay">أ</div>
+                        <div class="letter-example" id="arabicLetterExample">
+                            <div class="word magical-word" id="arabicWord">أرنب</div>
+                            <div class="image magical-image" id="arabicImage">🐇</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn back-btn magical-btn" id="backFromArabicBtn">العودة للأقسام</button>
+                </div>
+
+                <!-- قسم الحروف الإنجليزية -->
+                <div class="content-screen learning-screen" id="englishLearningScreen">
+                    <div class="learning-header">
+                        <h2>🔠 الحروف الإنجليزية</h2>
+                        <p>Discover English Letters!</p>
+                    </div>
+                    
+                    <div class="letters-grid" id="englishLettersGrid"></div>
+                    
+                    <div class="letter-display-section">
+                        <div class="letter-display magical-letter" id="englishLetterDisplay">A</div>
+                        <div class="letter-example" id="englishLetterExample">
+                            <div class="word magical-word" id="englishWord">Apple</div>
+                            <div class="image magical-image" id="englishImage">🍎</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn back-btn magical-btn" id="backFromEnglishBtn">العودة للأقسام</button>
+                </div>
+
+                <!-- قسم السور القرآنية -->
+                <div class="content-screen learning-screen" id="quranLearningScreen">
+                    <div class="learning-header">
+                        <h2>📖 القرآن الكريم</h2>
+                        <p>استمع إلى التلاوات العطرة</p>
+                    </div>
+                    
+                    <div class="suras-list" id="surasList"></div>
+                    
+                    <div class="audio-player magical-player">
+                        <div class="now-playing" id="nowPlaying">اختر سورة للاستماع</div>
+                        <div class="player-controls">
+                            <button class="btn control-btn magical-btn" id="playBtn">▶️ تشغيل</button>
+                            <button class="btn control-btn magical-btn" id="pauseBtn">⏸️ إيقاف</button>
+                        </div>
+                    </div>
+
+                    <!-- نظام التعرف على التلاوة -->
+                    <div class="recognition-section magical-section">
+                        <h3>🎤 تدريب القراءة</h3>
+                        <button class="btn recognition-btn magical-btn" id="startRecognitionBtn">
+                            ابدأ القراءة
+                        </button>
+                        <div class="recognition-status" id="recognitionStatus">
+                            اضغط على الزر وابدأ القراءة...
+                        </div>
+                        <div class="recognition-result" id="recognitionResult"></div>
+                    </div>
+                    
+                    <button class="btn back-btn magical-btn" id="backFromQuranBtn">العودة للأقسام</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قائمة الحلقات -->
+    <div class="episodes-menu" id="episodesMenu">
+        <div class="episodes-container">
+            <h2>🗺️ خريطة المغامرات</h2>
+            <div class="episodes-grid" id="episodesGrid"></div>
+            <button class="btn back-btn magical-btn" id="closeEpisodesBtn">العودة</button>
+        </div>
+    </div>
+
+    <!-- نظام التحكم -->
+    <div class="control-panel">
+        <button class="control-btn magical-control" id="pauseBtn">⏸️</button>
+        <button class="control-btn magical-control" id="soundBtn">🔊</button>
+        <button class="control-btn magical-control" id="menuBtn">📋</button>
+        <button class="control-btn magical-control" id="voiceBtn">🎤</button>
+    </div>
+
+    <!-- نظام التحفيز -->
+    <div class="feedback-overlay" id="feedbackOverlay">
+        <div class="feedback-content magical-feedback">
+            <div class="feedback-star">⭐</div>
+            <div class="feedback-message" id="feedbackMessage">أحسنت!</div>
+            <div class="feedback-child" id="feedbackChild"></div>
+        </div>
+    </div>
+
+    <!-- المشغلات الصوتية -->
+    <audio id="backgroundMusic" loop>
+        <source src="assets/sounds/music/learning.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="suraAudio" preload="auto"></audio>
+    <audio id="feedbackAudio" preload="auto"></audio>
+    <audio id="encouragementAudio" preload="auto"></audio>
+    <audio id="effectsAudio" preload="auto"></audio>
+
+    <script src="js/voiceRecognition.js"></script>
+    <script src="js/cartoonEngine.js"></script>
+    <script src="js/storyManager.js"></script>
+    <script src="js/learningManager.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
